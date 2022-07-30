@@ -112,13 +112,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.fromLTRB(12, 12, 0, 12),
+          padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
           child: SvgPicture.asset(
             'images/redgreenbird_Bird_Original.svg',
           ),
         ),
         title: Text(widget.title),
-        actions: <Widget>[
+        /*actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
           ),
-        ],
+        ],*/
       ),
       body: Center(
         child: Container(
