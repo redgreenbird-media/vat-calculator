@@ -6,6 +6,14 @@ import 'package:intl/intl.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import 'package:flutter_launcher_icons/android.dart';
+import 'package:flutter_launcher_icons/constants.dart';
+import 'package:flutter_launcher_icons/custom_exceptions.dart';
+import 'package:flutter_launcher_icons/ios.dart';
+import 'package:flutter_launcher_icons/main.dart';
+import 'package:flutter_launcher_icons/utils.dart';
+import 'package:flutter_launcher_icons/xml_templates.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -113,8 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
-          child: SvgPicture.asset(
-            'images/redgreenbird_Bird_Original.svg',
+          child: Image.asset(
+            'assets/images/redgreenbird_Bird_Original.png',
           ),
         ),
         title: Text(widget.title),
