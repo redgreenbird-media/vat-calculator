@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "VAT Calculator"
-#define MyAppVersion "0.1"
+#define MyAppVersion "1.1"
 #define MyAppPublisher "redgreenbird GmbH"
 #define MyAppURL "https://redgreenbird.com"
 #define MyAppExeName "vat_calculator.exe"

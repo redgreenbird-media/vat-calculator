@@ -3,16 +3,9 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import 'package:flutter_launcher_icons/android.dart';
-import 'package:flutter_launcher_icons/constants.dart';
-import 'package:flutter_launcher_icons/custom_exceptions.dart';
-import 'package:flutter_launcher_icons/ios.dart';
-import 'package:flutter_launcher_icons/main.dart';
-import 'package:flutter_launcher_icons/utils.dart';
-import 'package:flutter_launcher_icons/xml_templates.dart';
+const String appName = "VAT Calculator";
 
 void main() {
   runApp(const MyApp());
@@ -30,8 +23,8 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      title: 'VAT Calculator by redgreenbird GmbH',
-      home: const MyHomePage(title: 'VAT Calculator by redgreenbird GmbH'),
+      title: appName,
+      home: const MyHomePage(title: appName),
     );
   }
 }
@@ -55,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   double _finalResult = 0;
   String _finalResultFormatted = "0.00";
   ConvertMethod? _convertMethod = ConvertMethod.removeVAT;
-  TextEditingController _vatController = new TextEditingController();
+  final TextEditingController _vatController = TextEditingController();
 
   @override
   void initState() {
@@ -120,9 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
+          padding: const EdgeInsets.fromLTRB(16, 5, 0, 5),
           child: Image.asset(
-            'assets/images/redgreenbird_Bird_Original.png',
+            'assets/vat_calculator_logo.png',
           ),
         ),
         title: Text(widget.title),
@@ -244,36 +237,75 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: SelectableText.rich(
-                    TextSpan(
-                      text: "Difference: CHF " + _differenceFormatted,
-                      style: const TextStyle(
-                        color: CupertinoColors.systemGrey2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SelectableText.rich(
+                        TextSpan(
+                          text: "Difference: CHF " + _differenceFormatted,
+                          style: const TextStyle(
+                            color: CupertinoColors.systemGrey2,
+                          ),
+                        ),
+                        // style: const TextStyle(
+                        //     fontSize: 20, fontWeight: FontWeight.bold)
                       ),
-                      mouseCursor: SystemMouseCursors.click,
-                    ),
-                    onTap: () {
-                      _copyToClipboard(_difference.toString());
-                    },
-                    // style: const TextStyle(
-                    //     fontSize: 20, fontWeight: FontWeight.bold)
+                      const Padding(padding: EdgeInsets.fromLTRB(3, 0, 0, 0)),
+                      SizedBox(
+                        height: 18.0,
+                        width: 18.0,
+                        child: IconButton(
+                          padding: const EdgeInsets.all(0.0),
+                          onPressed: () {
+                            _copyToClipboard(_difference.toString());
+                          },
+                          icon: const Icon(Icons.copy),
+                          iconSize: 18.0,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: SelectableText("CHF " + _finalResultFormatted,
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SelectableText("CHF " + _finalResultFormatted,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                      IconButton(
+                        onPressed: () {
+                          _copyToClipboard(_finalResult.toString());
+                        },
+                        icon: const Icon(Icons.copy),
+                        color: Colors.grey,
+                      ),
+                    ],
+                  ),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(),
-                  onPressed: () {
-                    _copyToClipboard(_finalResult.toString());
-                  },
-                  child: const Text('Copy Result'),
-                )
               ],
             ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: SizedBox(
+          height: 50.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  'assets/redgreenbird_Bird_Original.png',
+                ),
+              ),
+              const Text("by redgreenbird"),
+            ],
           ),
         ),
       ),
